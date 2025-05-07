@@ -98,11 +98,33 @@ class StatusCodeCommand extends Command
             }
         }
 
+        // 按照 _ 前的单词分组
+        $groupedCodes = [];
+        foreach ($writeList as $name => $code) {
+            // 获取 _ 前的单词
+            $prefix = explode('_', $name)[0];
+            $groupedCodes[$prefix][$name] = $code; // 按前缀分组
+        }
+
+        // 对每个组进行排序
+        foreach ($groupedCodes as &$codes) {
+            // 按照常量值排序
+            asort($codes);
+        }
+
+        // 创建最终排序列表
+        $sortedCodes = [];
+        foreach ($groupedCodes as $prefix => $codes) {
+            // 将组内的状态码按字母顺序排序，并将其添加到最终列表
+            ksort($codes); // 按名称排序
+            $sortedCodes = array_merge($sortedCodes, $codes); // 合并每个组
+        }
+
         // 写入文件
-        $this->writeToFile($classPath, $classNameSpaceName, $className, $writeList, $codeList);
+        $this->writeToFile($classPath, $classNameSpaceName, $className, $sortedCodes, $codeList);
 
         $io->title('Status code generation completed.');
-        $io->text('Total constants: ' . count($writeList));
+        $io->text('Total constants: ' . count($sortedCodes));
         if (!empty($newConstants)) {
             $io->section('New constants:');
             $io->table(['Constant', 'Code'], array_map(function ($name, $code) {
@@ -112,6 +134,8 @@ class StatusCodeCommand extends Command
             $io->text('No new constants added.');
         }
     }
+
+
 
     protected function scanFilesForCodes(SymfonyStyle $output): array
     {
@@ -123,30 +147,54 @@ class StatusCodeCommand extends Command
 
         $className = $reflection->getShortName();
         $codeList = [];
+        $currentFilePath = $reflection->getFileName(); // 获取当前类文件路径
+
         foreach ($this->statusScanPath as $path) {
             $files = $this->getPhpFiles($path);
 
             foreach ($files as $file) {
+                // 排除当前类文件
+                if ($file === $currentFilePath) {
+                    continue;
+                }
+
                 $content = file_get_contents($file);
 
-                // 匹配状态码常量
-                preg_match_all('/' . preg_quote($className . '::') . '(\w+)/', $content, $matches);
+                // 匹配状态码常量及其描述
+                preg_match_all('/const\s+(\w+)\s*=\s*(\d+);\s*\/\/\s*(.*?)(?=\n|$)/m', $content, $matches);
+
+                if (!empty($matches[1])) {
+                    foreach ($matches[1] as $index => $name) {
+                        $description = trim($matches[3][$index]);
+                        if ($description !== '未知错误') {
+                            $codeList[$name] = $description;
+                        }
+                    }
+                }
+
+                // 匹配 `StatusCode::` 的使用
+                $pattern = '/\b' . preg_quote($className) . '::(\w+)\b/';
+                preg_match_all($pattern, $content, $matches);
 
                 if (!empty($matches[1])) {
                     foreach ($matches[1] as $match) {
-                        // 记录常量名称，默认描述为 '未知错误'
-                        $codeList[$match] = '未知错误';
+                        // 如果状态码未被记录，则默认描述为 '未知错误'
+                        if (!isset($codeList[$match])) {
+                            $codeList[$match] = '未知错误';
+                        }
                     }
                 }
 
                 // 匹配异常消息
-                $pattern = '/throw\s+[^;]*\(\s*[\'"](.*?)[\'"]\s*,\s*' . preg_quote($className . '::') . '(\w+)\s*(?:,.*?)?\)/s';
-                preg_match_all($pattern, $content, $exceptionMatches);
+                $exceptionPattern = '/throw\s+(\w+Exception)\s*\(\s*[\'"](.*?)[\'"]\s*,\s*' . preg_quote($className . '::') . '(\w+)\s*\)/';
+                preg_match_all($exceptionPattern, $content, $exceptionMatches);
 
-                if (!empty($exceptionMatches[2])) {
-                    foreach ($exceptionMatches[2] as $index => $match) {
-                        // 记录常量名称和异常消息
-                        $codeList[$match] = $exceptionMatches[1][$index];
+                if (!empty($exceptionMatches[3])) {
+                    foreach ($exceptionMatches[3] as $index => $constantName) {
+                        // 如果状态码已经在 codeList 中，则更新描述
+                        if (isset($codeList[$constantName])) {
+                            $codeList[$constantName] = $exceptionMatches[2][$index];
+                        }
                     }
                 }
             }
@@ -154,6 +202,21 @@ class StatusCodeCommand extends Command
 
         return $codeList;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     protected function writeToFile(string $filePath, string $namespace, string $className, array $constants, array $codeList)
@@ -189,7 +252,7 @@ EOT;
         // 写入消息
         foreach ($constants as $name => $value) {
             $description = $codeList[$name] ?? '未知错误';
-            $padding = str_repeat(' ', 30 - strlen("self::$name")); // 对齐 = 号
+            $padding = str_repeat(' ', 50 - strlen("self::$name")); // 对齐 = 号
             $template .= "        self::$name$padding => '$description',\n";
         }
 
