@@ -1,13 +1,13 @@
 <?php
 
 
-use support\ErrorCode;
+use support\StatusCode;
 
 return [
     'enable' => true,
 
 
-    "status_code_class" => new ErrorCode(), // ErrorCode 类文件
+    "status_code_class" => new StatusCode(), // ErrorCode 类文件
 
     "system_number" => 201, // 系统标识
     "start_min_number" => 10000,// 错误码生成范围 例如 10000-99999
