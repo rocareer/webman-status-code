@@ -1,5 +1,6 @@
 <?php
 
+
 namespace Rocareer\WebmanStatusCode\command;
 
 use Rocareer\WebmanStatusCode\Code;
