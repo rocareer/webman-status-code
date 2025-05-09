@@ -1,4 +1,6 @@
 <?php
+
+
 namespace support;
 
 /**
@@ -6,47 +8,100 @@ namespace support;
  */
 class StatusCode
 {
-    const SYSTEM                        = 10;           // 系统码
-    const TEST                          = 96;           // 测试码
-    const NO_ROLE                       = 20110001;           // 无权访问 请获得相应权限
-    const TOKEN_REFRESH_FAILED          = 20110002;           // 未知错误
-    const ALREADY_LOGGED                = 20110003;           // 未知错误
-    const LOGIN_HANDLER_NOT_FOUND       = 20110004;           // 登录处理器未实现
-    const USER_NOT_FOUND                = 20110005;           // 用户不存在
-    const LOGIN_TYPE_NOTFOUND           = 20110006;           // 不支持的登录类型
-    const INVALID_TOKEN                 = 20110007;           // Invalid token:
-    const TOKEN_EXPIRED                 = 20110008;           // 凭证已过期 请重新登录
-    const NO_TOKEN                      = 20110009;           // 未登录或凭证失效,请重新登录
-    const LOGIN_PASSWORD_ERROR          = 20110010;           // 密码错误1
-    const LOGIN_NOT_FOUND_USER          = 20110011;           // 用户不存在
-    const LOGIN_VALIDATA_FAILED         = 20110012;           // 未知错误
-    const CAPTCHA_ERROR                 = 20110013;           // 验证码错误
-    const ERROR_EMAIL_OR_PASSWORD       = 20110015;           // 邮箱或密码错误
-    const TOKEN_NREFRESH_FAILED         = 20110016;           // 未知错误
-    const UPLOAD_ERROR                  = 20110017;           // 未知错误
+    const NEED_LOGIN                = 303;           // 未知错误
+    const TOKEN_EXPIRED             = 409;           // 未知错误
+    const NO_PERMISSION             = 401;
+    const METHOD_NOT_ALLOWED = 433;
+    const TOKEN_SHOULD_REFRESH      = 409;           // 未知错误
+    const SYSTEM_ERROR              = 500;           // 未知错误
+    const MEMBER_ERROR              = 666;           // 未知错误
+    const TOKEN_INVALID             = 10002;           // 未知错误
+    const USER_NOT_FOUND            = 10001;           // 未知错误
+    const SERVER_ERROR              = 10004;           // 未知错误
+    const USER_DISABLED             = 10008;           // 未知错误
+    const LOGIN_ACCOUNT_LOCKED      = 10009;           // 未知错误
+    const PASSWORD_ERROR            = 10010;           // 未知错误
+    const PASSWORD_CHANGE_FAILED    = 10011;           // 未知错误
+    const TOKEN_NOT_FOUND           = 10012;           // 未知错误
+    const USER_SAVE_FAILED          = 10013;           // 未知错误
+    const LOGIN_TYPE_NOTFOUND       = 10014;           // 未知错误
+    const LOGIN_FAILED              = 10015;           // 未知错误
+    const NOT_LOGIN                 = 10016;           // 未知错误
+    const SESSION_MISMATCH          = 10017;           // 未知错误
+    const VIP_EXPIRED               = 10018;           // 未知错误
+    const USER_BANNED               = 10019;           // 未知错误
+    const USERNAME_REQUIRED         = 10020;           // 未知错误
+    const PASSWORD_REQUIRED         = 10021;           // 未知错误
+    const CAPTCHA_REQUIRED          = 10022;           // 未知错误
+    const TOKEN_CREATE_FAILED       = 10023;           // 未知错误
+    const STATE_MANAGER_NOT_INIT    = 10024;           // 未知错误
+    const STATE_MANAGER_CACHE_ERROR = 10025;           // 未知错误
+    const UNAUTHORIZED              = 10027;           // 未知错误
+    const AUTH_ERROR                = 10028;           // 未知错误
+    const BUSINESS_ERROR            = 10029;           // 未知错误
+    const VALIDATION_ERROR          = 10030;           // 未知错误
+    const SAVE_CACHE_FAILED         = 10031;           // 未知错误
+    const STATE_ERROR               = 10032;           // 未知错误
+    const MEMBER_NOT_FOUND          = 10033;           // 未知错误
+    const TOKEN_BLACK               = 10034;           // 未知错误
+    const TOKEN_DECODE_FAILED       = 10035;           // 未知错误
+    const TOKEN_ERROR               = 10036;           // 未知错误
+    const TOKEN_ENCODE_FAILED       = 10037;           // 未知错误
+    const TOKEN_VERIFY_FAILED       = 10038;           // 未知错误
+    const TOKEN_REFRESH_FAILED      = 10039;           // 未知错误
+    const TOKEN_DESTROY_FAILED      = 10040;           // 未知错误
+    const AUTHENTICATOR_ERROR       = 10043;           // 未知错误
+    const AUTHENTICATION_FAILED     = 10044;           // 未知错误
+    const STATE_CACHE_FIND_FAILED   = 10045;           // 未知错误
 
 
     // 状态码消息定义
-    const MESSAGES = [
-        self::SYSTEM                   => '系统码',
-        self::TEST                     => '测试码',
-        self::NO_ROLE                  => '无权访问 请获得相应权限',
-        self::TOKEN_REFRESH_FAILED     => '未知错误',
-        self::ALREADY_LOGGED           => '未知错误',
-        self::LOGIN_HANDLER_NOT_FOUND  => '登录处理器未实现',
-        self::USER_NOT_FOUND           => '用户不存在',
-        self::LOGIN_TYPE_NOTFOUND      => '不支持的登录类型',
-        self::INVALID_TOKEN            => 'Invalid token: ',
-        self::TOKEN_EXPIRED            => '凭证已过期 请重新登录',
-        self::NO_TOKEN                 => '未登录或凭证失效,请重新登录',
-        self::LOGIN_PASSWORD_ERROR     => '密码错误1',
-        self::LOGIN_NOT_FOUND_USER     => '用户不存在',
-        self::LOGIN_VALIDATA_FAILED    => '未知错误',
-        self::CAPTCHA_ERROR            => '验证码错误',
-        self::ERROR_EMAIL_OR_PASSWORD  => '邮箱或密码错误',
-        self::TOKEN_NREFRESH_FAILED    => '未知错误',
-        self::UPLOAD_ERROR             => '未知错误',
+    const MESSAGES           = [
+        self::NEED_LOGIN                => '未知错误',
+        self::TOKEN_EXPIRED             => '未知错误',
+        self::TOKEN_SHOULD_REFRESH      => '未知错误',
+        self::SYSTEM_ERROR              => '未知错误',
+        self::MEMBER_ERROR              => '未知错误',
+        self::TOKEN_INVALID             => '未知错误',
+        self::USER_NOT_FOUND            => '未知错误',
+        self::SERVER_ERROR              => '未知错误',
+        self::USER_DISABLED             => '未知错误',
+        self::LOGIN_ACCOUNT_LOCKED      => '未知错误',
+        self::PASSWORD_ERROR            => '未知错误',
+        self::PASSWORD_CHANGE_FAILED    => '未知错误',
+        self::TOKEN_NOT_FOUND           => '未知错误',
+        self::USER_SAVE_FAILED          => '未知错误',
+        self::LOGIN_TYPE_NOTFOUND       => '未知错误',
+        self::LOGIN_FAILED              => '未知错误',
+        self::NOT_LOGIN                 => '未知错误',
+        self::SESSION_MISMATCH          => '未知错误',
+        self::VIP_EXPIRED               => '未知错误',
+        self::USER_BANNED               => '未知错误',
+        self::USERNAME_REQUIRED         => '未知错误',
+        self::PASSWORD_REQUIRED         => '未知错误',
+        self::CAPTCHA_REQUIRED          => '未知错误',
+        self::TOKEN_CREATE_FAILED       => '未知错误',
+        self::STATE_MANAGER_NOT_INIT    => '未知错误',
+        self::STATE_MANAGER_CACHE_ERROR => '未知错误',
+        self::UNAUTHORIZED              => '未知错误',
+        self::AUTH_ERROR                => '未知错误',
+        self::BUSINESS_ERROR            => '未知错误',
+        self::VALIDATION_ERROR          => '未知错误',
+        self::SAVE_CACHE_FAILED         => '未知错误',
+        self::STATE_ERROR               => '未知错误',
+        self::MEMBER_NOT_FOUND          => '未知错误',
+        self::TOKEN_BLACK               => '未知错误',
+        self::TOKEN_DECODE_FAILED       => '未知错误',
+        self::TOKEN_ERROR               => '未知错误',
+        self::TOKEN_ENCODE_FAILED       => '未知错误',
+        self::TOKEN_VERIFY_FAILED       => '未知错误',
+        self::TOKEN_REFRESH_FAILED      => '未知错误',
+        self::TOKEN_DESTROY_FAILED      => '未知错误',
+        self::AUTHENTICATOR_ERROR       => '未知错误',
+        self::AUTHENTICATION_FAILED     => '未知错误',
+        self::STATE_CACHE_FIND_FAILED   => '未知错误',
     ];
+
 
 
     /**
