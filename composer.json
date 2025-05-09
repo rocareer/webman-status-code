@@ -10,5 +10,6 @@
     "psr-4": {
       "Rocareer\\WebmanStatusCode\\": "src"
     }
-  }
+  },
+  "minimum-stability": "dev"
 }
