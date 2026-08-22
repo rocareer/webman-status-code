@@ -11,7 +11,7 @@ class StatusCode
     const NEED_LOGIN                = 303;           // 未知错误
     const TOKEN_EXPIRED             = 409;           // 未知错误
     const NO_PERMISSION             = 401;
-    const METHOD_NOT_ALLOWED = 433;
+    const METHOD_NOT_ALLOWED        = 433;
     const TOKEN_SHOULD_REFRESH      = 409;           // 未知错误
     const SYSTEM_ERROR              = 500;           // 未知错误
     const MEMBER_ERROR              = 666;           // 未知错误
@@ -53,10 +53,13 @@ class StatusCode
     const AUTHENTICATOR_ERROR       = 10043;           // 未知错误
     const AUTHENTICATION_FAILED     = 10044;           // 未知错误
     const STATE_CACHE_FIND_FAILED   = 10045;           // 未知错误
+    const ACCESS_DENIED             = 10046;            // 访问权限不足
+    const TOKEN_GENERATE_FAILED     = 10047;            // 访问权限不足
+    const MEMBER_LOGGED_IN_ELSEWHERE     = 10048;            // 账号已在其他地方登录
 
 
     // 状态码消息定义
-    const MESSAGES           = [
+    const MESSAGES = [
         self::NEED_LOGIN                => '未知错误',
         self::TOKEN_EXPIRED             => '未知错误',
         self::TOKEN_SHOULD_REFRESH      => '未知错误',
@@ -100,8 +103,10 @@ class StatusCode
         self::AUTHENTICATOR_ERROR       => '未知错误',
         self::AUTHENTICATION_FAILED     => '未知错误',
         self::STATE_CACHE_FIND_FAILED   => '未知错误',
+        self::ACCESS_DENIED             => '访问权限不足',
+        self::TOKEN_GENERATE_FAILED     => 'Token生成失败',
+        self::MEMBER_LOGGED_IN_ELSEWHERE     => '账号已在别处登录',
     ];
-
 
 
     /**
