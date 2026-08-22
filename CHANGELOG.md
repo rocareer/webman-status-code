@@ -1,0 +1,26 @@
+# 更新日志 (Changelog)
+
+本项目版本号遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
+
+## [v1.0.3] - 2026-08-23
+
+### 同步：support/StatusCode 与 rocareer/radmin 3.2+ 对齐
+
+- 补齐 ACCESS_DENIED(10046)/TOKEN_GENERATE_FAILED(10047)/MEMBER_LOGGED_IN_ELSEWHERE(10048)/SAVE_CACHE_FAILED(10031)/STATE_ERROR(10032) 常量与消息
+- 与 radmin 内置 `support\StatusCode` 完全一致（diff 校验），radmin 3.2 安全加固依赖这些状态码
+
+## [v1.0.2] - 2026-08-23
+
+### 维护
+
+- composer 最低稳定性设为 dev（历史版本）
+
+## [v1.0.1] - 2025-05
+
+### 修复
+
+- 状态码常量及消息定义重构后的首版修复
+
+## [v1.0.0] - 2025-05
+
+- 首个版本：webman 状态码插件（错误码定义 + 生成命令 + support/StatusCode 复制安装）
