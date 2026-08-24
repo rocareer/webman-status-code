@@ -1,7 +1,7 @@
 {
   "name": "rocareer/webman-status-code",
   "type": "library",
-  "license": "Apache-2.0",
+  "license": "proprietary",
   "description": "Webman plugin rocareer/webman-status-code",
   "require": {
     "php": ">=8.1.0"
