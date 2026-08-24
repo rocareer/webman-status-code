@@ -24,12 +24,11 @@ dev 全家桶（`dev/full`、`dev/luoling`）已通过 path 仓库钉版 `v1.0.3
 ```php
 use support\StatusCode;
 
-// 控制器/服务内返回统一错误
-return $this->error(StatusCode::NO_TOKEN);              // code + 中文消息自动附带
-return $this->error('用户不存在', StatusCode::USER_NOT_FOUND);
+// 中间件/服务内抛业务异常（消息为中文提示，码为业务状态码，全局异常处理器统一转响应）
+throw new UnauthorizedHttpException('凭证已过期 请重新登录', StatusCode::TOKEN_EXPIRED);
 
 // 取任意码的中文消息（未登记返回 '未知错误'）
-$msg = StatusCode::getMessage(StatusCode::TOKEN_EXPIRED);
+$msg = StatusCode::getMessage(StatusCode::NO_TOKEN);
 ```
 
 常用码段（完整列表见 `src/support/StatusCode.php`）：

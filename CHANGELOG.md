@@ -2,6 +2,10 @@
 
 ## 未发布（Unreleased）
 
+### 文档
+
+- 新增 README：插件职责/安装/使用示例（异常抛码 + getMessage）、scode:run 代码生成说明、配置项、类参考、历史遗留（StatusRun/error_code.php）说明、与 radmin 同步约定、卸载
+
 ### 许可与版权
 
 - 许可证由开源协议改为 proprietary（商业/内部专有），不适用任何开源许可证；LICENSE 文件同步替换为 Rocareer 专有许可文本。
