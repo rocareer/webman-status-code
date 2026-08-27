@@ -1,8 +1,8 @@
 # 更新日志 (Changelog)
 
-## 未发布（Unreleased）
+## v1.0.4 - 2026-08-28
 
-### 状态码体系收敛（v1.0.4）
+### 状态码体系收敛
 
 - 删除 `src/StatusCode.php`（namespace support 的业务码版：全仓库零引用 + 与 `src/support/StatusCode.php`
   同名类冲突 + PSR-4 无法加载的死代码）。
