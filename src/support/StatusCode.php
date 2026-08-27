@@ -5,6 +5,10 @@ namespace support;
 
 /**
  * 系统状态码定义
+ *
+ * 同步源：rocareer/radmin（src/support/StatusCode.php）。本文件为物理拷贝，
+ * 供未装 radmin 的宿主使用；修改须以 radmin 侧为真源，改后同步回本文件，
+ * 避免双份漂移（安装时经 Install::pathRelation 拷贝到项目 support/）。
  */
 class StatusCode
 {

@@ -29,8 +29,8 @@ class Code
             // 大于3位截取前三位
             return \substr($code, 0, $len);
         } elseif ($numberLength < $len) {
-            // 小于3位后面补充0
-            return \str_pad($code, ($len - $numberLength), "0", STR_PAD_RIGHT);
+            // 小于3位右补0到 $len 位（如 '1' -> '100'；此前误补到 $len-$numberLength 位产生 '10'）
+            return \str_pad($code, $len, "0", STR_PAD_RIGHT);
         } else {
             return $code;
         }

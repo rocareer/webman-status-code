@@ -136,8 +136,6 @@ class StatusCodeCommand extends Command
         }
     }
 
-
-
     protected function scanFilesForCodes(SymfonyStyle $output): array
     {
         try {
@@ -203,22 +201,6 @@ class StatusCodeCommand extends Command
 
         return $codeList;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     protected function writeToFile(string $filePath, string $namespace, string $className, array $constants, array $codeList)
     {

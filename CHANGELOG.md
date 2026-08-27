@@ -2,6 +2,16 @@
 
 ## 未发布（Unreleased）
 
+### 状态码体系收敛（v1.0.4）
+
+- 删除 `src/StatusCode.php`（namespace support 的业务码版：全仓库零引用 + 与 `src/support/StatusCode.php`
+  同名类冲突 + PSR-4 无法加载的死代码）。
+- `src/support/StatusCode.php` 明确为 rocareer/radmin 真源的物理拷贝（文件头注明同步约定），
+  消除"两套同名 support\StatusCode"的类重复定义风险。
+- 修复 `Code::getSystemCode()` 位数补齐 bug：`str_pad` 目标长度由 `$len-$numberLength` 改为 `$len`
+  （如系统标识 '1' 此前生成 '10'，现正确生成 '100'）。
+- `StatusCodeCommand` 清理冗余空行。
+
 ### 文档
 
 - 新增 README：插件职责/安装/使用示例（异常抛码 + getMessage）、scode:run 代码生成说明、配置项、类参考、历史遗留（StatusRun/error_code.php）说明、与 radmin 同步约定、卸载
