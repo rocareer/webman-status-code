@@ -9,6 +9,9 @@ namespace support;
  * 同步源：rocareer/radmin（src/support/StatusCode.php）。本文件为物理拷贝，
  * 供未装 radmin 的宿主使用；修改须以 radmin 侧为真源，改后同步回本文件，
  * 避免双份漂移（安装时经 Install::pathRelation 拷贝到项目 support/）。
+ *
+ * @audit-ignore fqcn_dup 与 radmin 同名副本：独立包需自带该类供无 radmin 宿主使用，
+ *   真源在 radmin，非无意重复定义。
  */
 class StatusCode
 {

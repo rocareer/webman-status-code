@@ -1,5 +1,20 @@
 # 更新日志 (Changelog)
 
+## [v1.0.6] - 2026-09-01
+
+### 修复
+
+- `support/StatusCode.php` 类注释标注 `@audit-ignore fqcn_dup`：本文件为 rocareer/radmin 真源的物理拷贝
+  （独立包需自带该类供无 radmin 宿主使用），消除 rocareer:audit 同名类冲突误报。
+
+## [v1.0.5] - 2026-09-01
+
+### 风格审计修复
+
+- 删除 StatusRun / error_code 必崩死文件（引用不存在符号）。
+- app.php 配置类名化（`RadminStatus` 常量类）。
+- StatusCodeCommand 的 init 位置与参数/返回类型补齐。
+
 ## v1.0.4 - 2026-08-28
 
 ### 状态码体系收敛
