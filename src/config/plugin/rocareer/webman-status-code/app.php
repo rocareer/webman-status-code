@@ -7,10 +7,10 @@ return [
     'enable' => true,
 
 
-    "status_code_class" => new StatusCode(), // ErrorCode 类文件
+    'status_code_class' => \support\StatusCode::class, // 状态码类名（命令端反射使用）
 
-    "system_number" => 201, // 系统标识
-    "start_min_number" => 10000,// 错误码生成范围 例如 10000-99999
+    'system_number' => 201, // 系统标识
+    'start_min_number' => 10000, // 错误码生成范围 例如 10000-99999
 
     // 扫描错误码
     'status_scan_path' => array_merge([

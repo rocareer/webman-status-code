@@ -10,25 +10,31 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
+/**
+ * 状态码扫描/生成命令（scode:run）
+ *
+ * 扫描 status_scan_path 下源码中的状态码常量定义，生成/更新错误码文件；
+ * 配置来自 config/plugin/rocareer/webman-status-code/app.php。
+ */
 class StatusCodeCommand extends Command
 {
     protected static $defaultName = 'scode:run';
     protected static $defaultDescription = 'Generate and manage status codes';
 
-    protected $statusCodeClass;
+    protected string $statusCodeClass;
     protected array $statusScanPath = [];
     protected int $minNumber = 0;
     protected string $systemNumCode = "200";
 
-    protected function configure()
+    protected function configure(): void
     {
         $this->addArgument('name', InputArgument::OPTIONAL, 'Name description');
-        $this->init();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
+        $this->init();
         $io->title('Starting StatusCodeCommand...');
         try {
             $this->generateStatusCode($input, $io);
@@ -39,7 +45,7 @@ class StatusCodeCommand extends Command
         return Command::SUCCESS;
     }
 
-    protected function init()
+    protected function init(): void
     {
         $config = config("plugin.rocareer.webman-status-code.app");
         if (!isset($config["status_code_class"])) {
@@ -63,7 +69,7 @@ class StatusCodeCommand extends Command
         }
     }
 
-    protected function generateStatusCode(InputInterface $input, SymfonyStyle $io)
+    protected function generateStatusCode(InputInterface $input, SymfonyStyle $io): void
     {
         $reflection = new \ReflectionClass($this->statusCodeClass);
         $classNameSpaceName = $reflection->getNamespaceName();
@@ -141,7 +147,7 @@ class StatusCodeCommand extends Command
         try {
             $reflection = new \ReflectionClass($this->statusCodeClass);
         } catch (\Exception $e) {
-            throw new \Exception("Class does not exist.");
+            throw $e;
         }
 
         $className = $reflection->getShortName();
@@ -202,7 +208,7 @@ class StatusCodeCommand extends Command
         return $codeList;
     }
 
-    protected function writeToFile(string $filePath, string $namespace, string $className, array $constants, array $codeList)
+    protected function writeToFile(string $filePath, string $namespace, string $className, array $constants, array $codeList): void
     {
         // 按常量值排序
         uasort($constants, function ($a, $b) {

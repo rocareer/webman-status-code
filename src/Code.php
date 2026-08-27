@@ -41,7 +41,7 @@ class Code
      * @param string $systemCode
      * @return string
      */
-    public static function getSystemCode(string $systemCode = "200")
+    public static function getSystemCode(string $systemCode = "200"): string
     {
         return self::generateCode($systemCode, self::SYSTEM_CODE_LEN);
     }
