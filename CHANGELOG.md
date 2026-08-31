@@ -1,5 +1,15 @@
 # 更新日志 (Changelog)
 
+## [v1.0.7] - 2026-08-31
+
+### Install.php 标准化（docs/install-standard.md）
+
+- 重写 src/Install.php：官方骨架残留（英文注释/array()/copy_dir/remove_dir/无 update）收敛为
+  规范风格——中文头注释 + install/update/uninstall 三钩子齐全 + PHP 8.1 类型声明 + 自实现
+  installByRelation(bool $isFirst)/uninstallByRelation()（首次全量拷贝、更新补齐缺失、卸载反向删除）。
+- 行为不变：pathRelation 仍落盘接线配置 + support/StatusCode.php；rocareer:audit
+  install_standard 规则全绿。
+
 ## [v1.0.6] - 2026-09-01
 
 ### 修复
