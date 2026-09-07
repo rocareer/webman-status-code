@@ -12,7 +12,7 @@ namespace support;
 class StatusCode
 {
     const NEED_LOGIN                = 303; // 需要登录
-    const TOKEN_EXPIRED             = 409; // 凭证已过期
+    const TOKEN_EXPIRED             = 409; // 凭证已过期（与 TOKEN_SHOULD_REFRESH 共用 409：认证链路对两者同走续期，MESSAGES 只保留 409 一条文案）
     const NO_PERMISSION             = 401;
     const METHOD_NOT_ALLOWED        = 433;
     const TOKEN_SHOULD_REFRESH      = 409; // 凭证需刷新
@@ -57,7 +57,7 @@ class StatusCode
     const AUTHENTICATION_FAILED     = 10044; // 认证失败
     const STATE_CACHE_FIND_FAILED   = 10045; // 状态缓存查找失败
     const ACCESS_DENIED             = 10046;            // 访问权限不足
-    const TOKEN_GENERATE_FAILED     = 10047;            // 访问权限不足
+    const TOKEN_GENERATE_FAILED     = 10047;            // Token生成失败
     const MEMBER_LOGGED_IN_ELSEWHERE     = 10048;            // 账号已在其他地方登录
 
 
