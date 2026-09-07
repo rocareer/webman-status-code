@@ -1,5 +1,13 @@
 # 更新日志 (Changelog)
 
+## [v1.0.9] - 2026-09-07
+
+### StatusCode 真源同步（radmin v4.11.9）
+
+- TOKEN_GENERATE_FAILED 常量注释修正（原误写「访问权限不足」→「Token生成失败」）
+- TOKEN_EXPIRED 注释补充：与 TOKEN_SHOULD_REFRESH 共用 409（认证链路同走续期，
+  MESSAGES 只保留 409 一条文案）
+
 ## [v1.0.8] - 2026-09-07
 
 ### StatusCode 真源同步（radmin v4.11.7）
