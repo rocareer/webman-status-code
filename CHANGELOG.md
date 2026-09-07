@@ -1,5 +1,14 @@
 # 更新日志 (Changelog)
 
+## [v1.0.10] - 2026-09-07
+
+### StatusCode 真源同步（radmin v5.2.6 第九轮审计）
+
+- MESSAGES 删 TOKEN_EXPIRED 重复条目（与 TOKEN_SHOULD_REFRESH 共用 409，数组
+  后者覆盖前者；副本此前残留导致 getMessage(409) 文案不一致）
+- MESSAGES 补 NO_PERMISSION(401)/METHOD_NOT_ALLOWED(433) 两条目（radmin
+  v5.2.x 已补，副本漏同步 → 未装 radmin 宿主 getMessage 返回「未知错误」）
+
 ## [v1.0.9] - 2026-09-07
 
 ### StatusCode 真源同步（radmin v4.11.9）

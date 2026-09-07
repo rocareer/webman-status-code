@@ -61,11 +61,13 @@ class StatusCode
     const MEMBER_LOGGED_IN_ELSEWHERE     = 10048;            // 账号已在其他地方登录
 
 
-    // 状态码消息定义
+    // 状态码消息定义（与 radmin 同步副本：TOKEN_EXPIRED/TOKEN_SHOULD_REFRESH 共用 409，
+    // MESSAGES 只保留 TOKEN_SHOULD_REFRESH 一条——数组后者覆盖前者）
     const MESSAGES = [
         self::NEED_LOGIN => '需要登录',
-        self::TOKEN_EXPIRED => '凭证已过期',
+        self::NO_PERMISSION => '无权限',
         self::TOKEN_SHOULD_REFRESH => '凭证需刷新',
+        self::METHOD_NOT_ALLOWED => '请求方法不允许',
         self::SYSTEM_ERROR => '系统错误',
         self::MEMBER_ERROR => '会员错误',
         self::TOKEN_INVALID => '凭证无效',
