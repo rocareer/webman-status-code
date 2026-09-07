@@ -1,7 +1,5 @@
 # 更新日志 (Changelog)
 
-# 更新日志 (Changelog)
-
 ## [v1.0.8] - 2026-09-07
 
 ### StatusCode 真源同步（radmin v4.11.7）
