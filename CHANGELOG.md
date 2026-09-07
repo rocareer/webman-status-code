@@ -1,6 +1,17 @@
 # 更新日志 (Changelog)
 
+# 更新日志 (Changelog)
+
+## [v1.0.8] - 2026-09-07
+
+### StatusCode 真源同步（radmin v4.11.7）
+
+- 常量注释「未知错误」占位 → 真实含义（需要登录/凭证已过期/无权限等 48 个码）
+- MESSAGES 消息文案补全：getMessage() 不再对业务码返回占位「未知错误」
+- 按 AGENTS 约定同步 radmin 真源（radmin 修改后本副本同步，防复制漂移）
+
 ## [v1.0.7] - 2026-08-31
+ - 2026-08-31
 
 ### Install.php 标准化（docs/install-standard.md）
 
