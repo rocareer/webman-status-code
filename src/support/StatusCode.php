@@ -4,10 +4,17 @@
 namespace support;
 
 /**
- * 系统状态码定义
+ * 系统状态码定义（rocareer/radmin src/support/StatusCode.php 的同步副本）
  *
- * 真源：本文件为状态码唯一真源；rocareer/webman-status-code 安装时拷贝同名文件
- * （src/support/StatusCode.php）给未装 radmin 的宿主。修改此处后须同步 webman-status-code 副本。
+ * 用途：webman-status-code 安装时经 pathRelation 将本文件落盘到宿主 support/，
+ * 供未装 radmin 的宿主获得统一的 support\StatusCode（装了 radmin 的宿主由 radmin
+ * PSR-4 映射优先生效，本文件不参与运行时解析）。
+ *
+ * 同步约定：内容随 radmin 真源同步，同步时必须保留本注解 @audit-ignore fqcn_dup
+ * （声明为有意的真源同步副本，rocareer:audit fqcn_dup 门禁依赖该注解除重），
+ * 历史同步曾丢失该注解导致门禁误报。
+ *
+ * @audit-ignore fqcn_dup
  */
 class StatusCode
 {
@@ -61,13 +68,14 @@ class StatusCode
     const MEMBER_LOGGED_IN_ELSEWHERE     = 10048;            // 账号已在其他地方登录
 
 
-    // 状态码消息定义（与 radmin 同步副本：TOKEN_EXPIRED/TOKEN_SHOULD_REFRESH 共用 409，
-    // MESSAGES 只保留 TOKEN_SHOULD_REFRESH 一条——数组后者覆盖前者）
+    // 状态码消息定义
+    // 注：TOKEN_EXPIRED/TOKEN_SHOULD_REFRESH 共用 409（认证链路对两者同走续期），
+    // MESSAGES 只保留 TOKEN_SHOULD_REFRESH 一条（数组后者覆盖前者，重复条目已收敛）
     const MESSAGES = [
         self::NEED_LOGIN => '需要登录',
         self::NO_PERMISSION => '无权限',
-        self::TOKEN_SHOULD_REFRESH => '凭证需刷新',
         self::METHOD_NOT_ALLOWED => '请求方法不允许',
+        self::TOKEN_SHOULD_REFRESH => '凭证需刷新',
         self::SYSTEM_ERROR => '系统错误',
         self::MEMBER_ERROR => '会员错误',
         self::TOKEN_INVALID => '凭证无效',
