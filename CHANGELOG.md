@@ -46,14 +46,14 @@
 - 行为不变：pathRelation 仍落盘接线配置 + support/StatusCode.php；rocareer:audit
   install_standard 规则全绿。
 
-## [v1.0.6] - 2026-09-01
+## [v1.0.6] - 2026-08-27
 
 ### 修复
 
 - `support/StatusCode.php` 类注释标注 `@audit-ignore fqcn_dup`：本文件为 rocareer/radmin 真源的物理拷贝
   （独立包需自带该类供无 radmin 宿主使用），消除 rocareer:audit 同名类冲突误报。
 
-## [v1.0.5] - 2026-09-01
+## [v1.0.5] - 2026-08-27
 
 ### 风格审计修复
 
