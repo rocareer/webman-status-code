@@ -15,6 +15,19 @@ namespace support;
  * 历史同步曾丢失该注解导致门禁误报。
  *
  * @audit-ignore fqcn_dup
+ * 【业务码 ≠ HTTP 状态码】（20260922 拍板：内部后台 API 一律 HTTP 200 + 本表业务码信封
+ * {code,msg,time,data}，前端 createAxios 拦截器按 code 分诊——409 静默续期重放、303 回登录页、
+ * 非 1 红错 toast）。注意本表码值**沿用了常见 HTTP 码的字面**（303/401/409/500）但语义是
+ * 业务层的，与传输层无关：NEED_LOGIN=303「需登录」≠ HTTP 303 See Other；NO_PERMISSION=401
+ * 「无权限」≠ HTTP 401 Unauthorized（HTTP 401 是「未认证」，「无权限」的 HTTP 语义是 403）；
+ * TOKEN_EXPIRED=409 与 HTTP 409 Conflict 无关；SYSTEM_ERROR=500 恰好同义。传输层真值只有
+ * 两种：JSON 业务响应恒 HTTP 200；框架/网关异常才产生真 5xx。勿以 HTTP 语义反推业务码，
+ * 也勿据业务码猜测 HTTP 状态——判读响应一律以信封 code 为准（脚本/测试同口径，历史三次
+ * 误读教训）。文件流下载/打印等非信封响应：错误体也是 HTTP 200+application/json，
+ * 客户端按响应 Content-Type 判别（真源 /@/utils/download 的 fetchBlobByToken；
+ * rocareer:audit frontend_raw_fetch 门禁禁页面裸 fetch/XHR 绕过信封）。
+ * 若未来开放面向外部第三方的公开 API（跨信任域），该层应按公开惯例使用真 HTTP 语义
+ * （401/403/429 + WWW-Authenticate），与本表分层共存、互不混用。
  */
 class StatusCode
 {

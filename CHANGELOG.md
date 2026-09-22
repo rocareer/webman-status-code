@@ -1,3 +1,9 @@
+## [v1.0.12] - 2026-09-22
+
+### docs: StatusCode 头注释随 radmin 5.10.6 真源同步「业务码 ≠ HTTP 状态码」对照段
+
+- 与 radmin 5.10.6 同段同步（码值零变化）；@audit-ignore fqcn_dup 副本注解保留。
+
 # 更新日志 (Changelog)
 
 ## [v1.0.11] - 2026-09-08
